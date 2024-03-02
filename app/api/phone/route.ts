@@ -1,11 +1,11 @@
 import axios from "axios";
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: Request) {
   const endpoint = "https://graph.zalo.me/v2.0/me/info";
   const secretKey = process.env.ZALO_APP_SECRET_KEY;
-  const { access_token, token } = req.query;
+  const { searchParams } = new URL(req.url);
+  const access_token = searchParams.get("access_token");
+  const token = searchParams.get("token");
 
   const response = await axios.get(endpoint, {
     headers: {
@@ -15,5 +15,5 @@ export async function GET(req: NextApiRequest) {
       secret_key: secretKey,
     },
   });
-  return NextResponse.json({ message: response.data });
+  return Response.json({ message: response.data });
 }
