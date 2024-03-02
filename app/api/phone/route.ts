@@ -17,11 +17,5 @@ export async function GET(req: Request) {
   });
 
   console.log({ response });
-
-  return new Response(response.data, {
-    status: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "https://h5.zdn.vn,zbrowser://h5.zdn.vn",
-    },
-  });
+  return Response.json(response.data);
 }
