@@ -15,5 +15,8 @@ export async function GET(req: Request) {
       secret_key: secretKey,
     },
   });
+
+  console.log({ response });
+
   return Response.json({ message: response.data });
 }
