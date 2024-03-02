@@ -18,5 +18,10 @@ export async function GET(req: Request) {
 
   console.log({ response });
 
-  return Response.json({ message: response.data });
+  return new Response(response.data, {
+    status: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "https://h5.zdn.vn,zbrowser://h5.zdn.vn",
+    },
+  });
 }
