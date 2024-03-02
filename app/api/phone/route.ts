@@ -7,7 +7,11 @@ export async function GET(req: Request) {
   const access_token = searchParams.get("access_token");
   const token = searchParams.get("token");
 
-  const response = await axios.get(endpoint, {
+  const {
+    data: {
+      data: { number },
+    },
+  } = await axios.get(endpoint, {
     headers: {
       Accept: "application/json",
       access_token,
@@ -16,6 +20,5 @@ export async function GET(req: Request) {
     },
   });
 
-  console.log({ response });
-  return Response.json(response.data);
+  return Response.json({ number });
 }
