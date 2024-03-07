@@ -5,8 +5,8 @@ export async function GET(req: Request) {
   const secretKey = process.env.ZALO_APP_SECRET_KEY;
   const { searchParams } = new URL(req.url);
 
-  if (!searchParams.has('access_token') || !searchParams.has('token')) {
-    return Response.json({ number: '0987654321' });
+  if (!searchParams.has("access_token") || !searchParams.has("token")) {
+    return Response.json({ number: '0987654321' }, { status: 200 });
   }
 
   const access_token = searchParams.get("access_token");
