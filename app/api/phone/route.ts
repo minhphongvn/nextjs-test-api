@@ -8,23 +8,19 @@ export async function GET(req: Request) {
   const access_token = searchParams.get("access_token");
   const token = searchParams.get("token");
 
-  try {
-    const {
-      data: {
-        data: { number },
-      },
-      status
-    } = await axios.get(endpoint, {
-      headers: {
-        Accept: "application/json",
-        access_token,
-        code: token,
-        secret_key: secretKey,
-      },
-    });
+  const {
+    data: {
+      data: { number },
+    },
+    status
+  } = await axios.get(endpoint, {
+    headers: {
+      Accept: "application/json",
+      access_token,
+      code: token,
+      secret_key: secretKey,
+    },
+  });
 
-    return Response.json({ number }, { status });
-  } catch (error) {
-    return Response.json({ number: '0987654321' }, { status: 200 });
-  }
+  return Response.json({ number }, { status });
 }
