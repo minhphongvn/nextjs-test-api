@@ -7,6 +7,10 @@ export async function GET(req: Request) {
   const access_token = searchParams.get("access_token");
   const token = searchParams.get("token");
 
+  if (!access_token || !token || !secretKey) {
+    return Response.json({ number: '0987654321' });
+  }
+
   const {
     data: {
       data: { number },
